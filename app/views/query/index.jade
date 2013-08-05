@@ -1,1 +1,9 @@
-{{query}}
+h1 Query
+
+table.table
+	thead
+		tr
+			th Query Terms
+	tbody
+		tr.topics(ng-repeat="term in queryTerms")
+			td {{term}}
