@@ -20,7 +20,8 @@ module.exports = function (app, passport, auth) {
 
 
   var query = require('../app/controllers/query');
-  app.get('/api/query', query.index)
+  app.get('/api/query', query.index);
+  app.post('/api/query', query.save);
 
   // home route
   app.get('*', function(req, res){ res.render("layouts/default");});
