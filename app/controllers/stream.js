@@ -8,8 +8,14 @@ var  fs = require('fs'),
 	config = require(__dirname + "/../../config/config")[env];
 
 exports.restart = function(req, res){
-	// var spawn = require('child_process').spawn,
-	// 	stream = spawn(config.app.streamCommandPath, ['restart']);
+	var exec = require('child_process').exec,
+		stream = exec(config.app.streamCommandPath + " restart", function(error, stdout, stderr){
+			console.log('stdout: ' + stdout);
+			console.log('stderr: ' + stderr);
+			if (error !== null) {
+				console.log('exec error: ' + error);
+			}
 
-	console.log("stream restarted");
+		});
+	res.json({});
 }

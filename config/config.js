@@ -8,8 +8,8 @@ module.exports = {
     root: rootPath,
     app: {
       name: 'StreamController - Development',
-      configFilePath: "/Users/GT/work/mashwork/receiver/src/main/resources/twitter.cfg",
-      streamCommandPath: "/Users/GT/work/mashwork/receiver/src/main/bin/twitter.d"
+      configFilePath: "/Users/GT/work/mashwork/receiver/target/receiver-1.0-SNAPSHOT-1375807278075/conf/twitter.cfg",
+      streamCommandPath: "/Users/GT/work/mashwork/receiver/target/receiver-1.0-SNAPSHOT-1375807278075/bin/twitter.d"
     }
   },
   test: {
@@ -17,8 +17,8 @@ module.exports = {
     root: rootPath,
     app: {
       name: 'StreamController - Test',
-      configFilePath: "/Users/GT/work/mashwork/receiver/src/main/resources/twitter.cfg",
-      streamCommandPath: "/Users/GT/work/mashwork/receiver/src/main/bin/twitter.d"
+      configFilePath: "/Users/GT/work/mashwork/receiver/target/receiver-1.0-SNAPSHOT-1375807278075/conf/twitter.cfg",
+      streamCommandPath: "/Users/GT/work/mashwork/receiver/target/receiver-1.0-SNAPSHOT-1375807278075/bin/twitter.d"
     }
   },
   production: {
@@ -26,8 +26,8 @@ module.exports = {
     root: rootPath,
     app: {
       name: 'StreamController - Production',
-      configFilePath: "/Users/GT/work/mashwork/receiver/src/main/resources/twitter.cfg",
-      streamCommandPath: "/Users/GT/work/mashwork/receiver/src/main/bin/twitter.d"
+      configFilePath: "/Users/GT/work/mashwork/receiver/target/receiver-1.0-SNAPSHOT-1375807278075/conf/twitter.cfg",
+      streamCommandPath: "/Users/GT/work/mashwork/receiver/target/receiver-1.0-SNAPSHOT-1375807278075/bin/twitter.d"
     }
   }
 }
