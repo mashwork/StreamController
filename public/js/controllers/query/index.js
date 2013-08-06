@@ -1,4 +1,4 @@
-function QueryIndexController($scope, $http, Query){
+function QueryIndexController($scope, $http, Query, Stream){
 
 	$scope.editMode = false;
 
@@ -26,6 +26,13 @@ function QueryIndexController($scope, $http, Query){
 		Query.save({query: returnedTermsString }, function(twitterQueryData){
 			console.log("twitterQueryData = %j", twitterQueryData);
 			refreshQuery();
+		});
+	}
+
+	$scope.restartStream = function(){
+		console.log("stream request sent");
+		Stream.restart({}, function(){
+			console.log("stream response received");
 		});
 	}
 

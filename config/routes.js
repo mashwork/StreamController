@@ -23,6 +23,9 @@ module.exports = function (app, passport, auth) {
   app.get('/api/query', query.index);
   app.post('/api/query', query.save);
 
+  var stream = require('../app/controllers/stream');
+  app.post('/api/stream', stream.restart);
+
   // home route
   app.get('*', function(req, res){ res.render("layouts/default");});
 

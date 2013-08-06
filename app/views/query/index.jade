@@ -3,8 +3,16 @@ h1 Query
 h1 Number of terms = {{numberOfTerms}} (Limit 400)
 
 h1(ng-show="editMode") Unsaved 
-br
 button.btn.btn-success(ng-show="editMode", ng-click="submitQuery()") Save Query
+button.btn.btn-success(ng-hide="editMode", ng-click="restartStream()") Restart Stream 
+
+br
+br
+br
+br
+br
+
+
 
 table.table
 	thead
