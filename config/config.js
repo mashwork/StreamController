@@ -26,8 +26,8 @@ module.exports = {
     root: rootPath,
     app: {
       name: 'StreamController - Production',
-      configFilePath: "/Users/GT/work/mashwork/receiver/target/receiver-1.0-SNAPSHOT-1375807278075/conf/twitter.cfg",
-      streamCommandPath: "/Users/GT/work/mashwork/receiver/target/receiver-1.0-SNAPSHOT-1375807278075/bin/twitter.d"
+      configFilePath: process.env.HOME + "/receiver/twitter.cfg",
+      streamCommandPath: process.env.HOME + "/production/receiver/bin/twitter.d"
     }
   }
 }
