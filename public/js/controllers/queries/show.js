@@ -6,7 +6,10 @@ function QueriesShowController($scope, $http, $routeParams, Query, Stream){
 
 	function formattedQuery(query){
 		var formattedQuery = {};
-		formattedQuery.terms = _.pluck(query.terms, "string");
+		formattedQuery.terms = _.chain(query.terms)
+			.pluck("string")
+			.select(function(term){return term.trim().length > 0})
+			.value();
 		formattedQuery.createdAt = query.createdat;
 		console.log("$scope.query = %j", query);
 		console.log("formattedQuery = %j", formattedQuery);

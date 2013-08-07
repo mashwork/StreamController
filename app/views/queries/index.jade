@@ -21,6 +21,7 @@ table.table
 			th id
 			th created at
 			th terms
+			th Set Stream Query
 	tbody
 		button.btn.btn-success(ng-hide="addQuery", ng-click="addQuery()") Add Query
 		tr(ng-repeat="query in queries")
@@ -28,3 +29,5 @@ table.table
 				a(href='/queries/{{query._id}}') {{query._id}}
 			td {{query.createdAt}}
 			td {{query.terms.join(",")}}
+			td 
+				button.btn.btn-success(ng-click="restartStream(query)") Restart Stream 
