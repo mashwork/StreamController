@@ -19,12 +19,17 @@ module.exports = function (app, passport, auth) {
   app.param('userId', users.user)
 
 
-  var query = require('../app/controllers/query');
-  app.get('/api/query', query.index);
-  app.post('/api/query', query.save);
+  var query = require('../app/controllers/queries');
+  app.get('/api/queries',             query.all);
+  app.post('/api/queries',            query.create);
+  app.get('/api/queries/:queryId',    query.one);
+  app.put('/api/queries/:queryId',    query.update);
+  app.del('/api/queries/:queryId',    query.destroy);
+
+  app.param('queryId', query.query)
 
   var stream = require('../app/controllers/stream');
-  app.post('/api/stream', stream.restart);
+  app.post('/api/stream/restart', stream.restart);
 
   // home route
   app.get('*', function(req, res){ res.render("layouts/default");});

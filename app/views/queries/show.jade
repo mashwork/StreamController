@@ -8,10 +8,6 @@ button.btn.btn-success(ng-hide="editMode", ng-click="restartStream()") Restart S
 
 br
 br
-br
-br
-br
-
 
 
 table.table
@@ -21,7 +17,7 @@ table.table
 			th
 	tbody
 		button.btn.btn-success(ng-hide="addingTerm", ng-click="addTerm()") Add Term
-		tr(ng-repeat="term in queryTerms")
+		tr(ng-repeat="term in query.terms")
 			td(ng-hide="term.string_edit", ng-click="editTerm(term)") {{term.string}}
 			td(ng-show="term.string_edit || term.string_adding")
 				input(type='text', ng-model='term.string', placeholder='term string')

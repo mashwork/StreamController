@@ -1,0 +1,15 @@
+h1 Query
+
+table.table
+	thead
+		tr
+			th id
+			th created at
+			th terms
+	tbody
+		button.btn.btn-success(ng-hide="addQuery", ng-click="addQuery()") Add Query
+		tr(ng-repeat="query in queries")
+			td 
+				a(href='/queries/{{query._id}}') {{query._id}}
+			td {{query.created_at}}
+			td {{query.terms.join(",")}}

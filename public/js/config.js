@@ -1,10 +1,9 @@
 //Setting up route
 window.app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider
-		.when('/query', { templateUrl: '/partials/query/index', controller: QueryIndexController })
-
+		.when('/queries',		{ templateUrl: '/partials/queries/index',	controller: QueriesIndexController })
+		.when('/queries/:id',	{ templateUrl: '/partials/queries/show',	controller: QueriesShowController })
 		.otherwise({redirectTo: '/'});
-	$locationProvider.html5Mode(true);
 }]);
 
 //Removing tomcat unspported headers
@@ -14,6 +13,5 @@ window.app.config(['$httpProvider', function($httpProvider, Configuration) {
 
 //Setting HTML5 Location Mode
 window.app.config(['$locationProvider', function($locationProvider) {
-    //$locationProvider.html5Mode(true);
-    $locationProvider.hashPrefix("!");
+    $locationProvider.html5Mode(true);
 }]);
