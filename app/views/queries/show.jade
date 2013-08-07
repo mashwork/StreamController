@@ -1,5 +1,10 @@
 h1 Query
 
+
+h1(ng-hide="query.title_edit", ng-click="editTitle()") {{query.title}}
+input(ng-show="query.title_edit", type='text', ng-model='query.title', placeholder='Query Title')
+
+
 h1 Number of terms = {{numberOfTerms}} (Limit 400)
 
 h1(ng-show="editMode") Unsaved 
@@ -8,7 +13,6 @@ button.btn.btn-success(ng-hide="editMode", ng-click="restartStream()") Restart S
 
 br
 br
-
 
 table.table
 	thead

@@ -5,6 +5,13 @@ function QueriesIndexController($scope, $http, Query, Stream){
 		Query.query({}, function(twitterQueryData){
 			console.log("twitterQueryData = %j", twitterQueryData);
 			$scope.queries = twitterQueryData.query;
+
+			var latestQuery = _.max($scope.queries, function(query){ return Date.parse(query.lastRun); });
+			if(latestQuery !== undefined){
+				latestQuery.lastRunning = true;
+			}
+			console.log("lastestQuery = " + latestQuery);
+
 			if(callback !== undefined){ callback(); } 
 		});
 	}
@@ -28,10 +35,13 @@ function QueriesIndexController($scope, $http, Query, Stream){
 
 	$scope.restartStream = function(query){
 		Stream.restart({terms: query.terms}, function(){
-			console.log("stream response received");
-			refreshQueries(function(){
-				getConfigSettings();
+			Query.update({id: query._id}, {lastRun: Date.now()}, function(twitterQueryData){
+				console.log("stream response received");
+				refreshQueries(function(){
+					getConfigSettings();
+				});
 			});
+			
 		});
 	}
 }

@@ -18,15 +18,17 @@ h1 Track Configurations
 table.table
 	thead
 		tr
-			th id
+			th title
+			th Last Running
 			th created at
 			th terms
 			th Set Stream Query
 	tbody
 		button.btn.btn-success(ng-hide="addQuery", ng-click="addQuery()") Add Query
 		tr(ng-repeat="query in queries")
-			td 
-				a(href='/queries/{{query._id}}') {{query._id}}
+			td
+				a(href='/queries/{{query._id}}') {{query.title}}
+			td {{query.lastRunning}}
 			td {{query.createdAt}}
 			td {{query.terms.join(",")}}
 			td 

@@ -10,7 +10,9 @@ function QueriesShowController($scope, $http, $routeParams, Query, Stream){
 			.pluck("string")
 			.select(function(term){return term.trim().length > 0})
 			.value();
-		formattedQuery.createdAt = query.createdat;
+		formattedQuery.createdAt = query.createdAt;
+		formattedQuery.lastRun = query.lastRun;
+		formattedQuery.title = query.title;
 		console.log("$scope.query = %j", query);
 		console.log("formattedQuery = %j", formattedQuery);
 		return formattedQuery;
@@ -46,8 +48,15 @@ function QueriesShowController($scope, $http, $routeParams, Query, Stream){
 	$scope.restartStream = function(){
 		console.log("stream request sent");
 		Stream.restart({terms: formattedQuery($scope.query).terms}, function(){
-			console.log("stream response received");
+			Query.update({id: $routeParams.id}, {lastRun: Date.now()}, function(twitterQueryData){
+				refreshQuery();
+			});
 		});
+	}
+
+	$scope.editTitle = function(){
+		$scope.query.title_edit = true;
+		$scope.editMode = true;
 	}
 
 	$scope.editTerm = function(term){

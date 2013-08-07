@@ -8,7 +8,9 @@ var mongoose = require('mongoose')
  */
 
 var QuerySchema = new Schema({
-	terms: [String], 
+	title: {type : String, required: true, unique: true, trim : true},
+	terms: [String],
+	lastRun: {type : Date}, 
 	createdAt  : {type : Date, default : Date.now}
 });
 
