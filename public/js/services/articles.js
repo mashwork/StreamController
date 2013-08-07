@@ -11,9 +11,10 @@ window.app.factory("Query", function($resource){
 });
 
 window.app.factory("Stream", function($resource){
-	return $resource('/api/stream/restart', {},
+	return $resource('/api/stream', {},
 		{
-			restart: {method: "POST"}
+			restart: {method: "POST"},
+			show: {method: "GET"}
 		}
 	);
 });

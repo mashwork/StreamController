@@ -4,6 +4,7 @@
  */
 
 var  fs = require('fs'),
+	_ = require('underscore'),
 	env = process.env.NODE_ENV || 'development',
 	config = require(__dirname + "/../../config/config")[env];
 
@@ -13,22 +14,45 @@ function readConfigFile(callback){
 	});
 }
 
+function splitConfig(callback){
+	readConfigFile( function (err, data) {
+		if (err) throw err;
+		var configSettings = _.chain(data.split("\n"))
+			.map(function(line){ return line.split("=")})
+			.object()
+			.value();
+
+		console.log("config settings = ", configSettings);
+
+		callback(err, configSettings);
+	});
+}
+
+function configIntoString(configSettings){
+	return _.chain(configSettings)
+		.pairs()
+		.map(function(settingPair){ return settingPair.join("=")})
+		.value()
+		.join("\n");
+}
+
+exports.show = function(req, res){
+	splitConfig(function(err, configSettings){
+		res.json(configSettings);
+	});
+}
+
 exports.restart = function(req, res){
 	var configQuery = req.body.terms.join(",");
 
 	console.log("restart was pressed");
 	console.log("data is %j", req.body);
-
-	readConfigFile( function (err, data) {
+	splitConfig(function (err, configSettings) {
 		if (err) throw err;
-		var splitPortion = "filter.track=",
-			splitQueryString = data.split(splitPortion),
-			otherFilePart = splitQueryString[0] + splitPortion,
-			configFileData = otherFilePart + configQuery;
+		configSettings["filter.track"] = configQuery;
+		console.log("setting file = " + configIntoString(configSettings));
 
-		console.log("writting file: " + configFileData);
-
-		fs.writeFile(config.app.configFilePath, configFileData, function(err) {
+		fs.writeFile(config.app.configFilePath, configIntoString(configSettings), function(err) {
 			if(err) {
 				console.log(err);
 			} else {
@@ -44,13 +68,10 @@ exports.restart = function(req, res){
 					}
 
 				});
-				res.json({query: configFileData});
+				res.json(configSettings);
 			}
 		});
 	});
-
-
-	
 }
 
 
