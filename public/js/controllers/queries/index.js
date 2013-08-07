@@ -27,10 +27,16 @@ function QueriesIndexController($scope, $http, Query, Stream){
 	refreshQueries();
 	getConfigSettings();
 
-	$scope.addQuery = function(){
-		Query.save({}, function(){
+	$scope.submitQuery = function(){
+		console.log("new query =  %j", $scope.newQuery);
+		Query.save($scope.newQuery, function(){
 			refreshQueries();
+			$scope.newQuery = undefined;
 		});
+	}
+
+	$scope.addQuery = function(){
+		$scope.newQuery = {title: "", terms: []};
 	}
 
 	$scope.restartStream = function(query){

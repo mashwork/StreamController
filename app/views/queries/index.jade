@@ -24,7 +24,16 @@ table.table
 			th terms
 			th Set Stream Query
 	tbody
-		button.btn.btn-success(ng-hide="addQuery", ng-click="addQuery()") Add Query
+		button.btn.btn-success(ng-hide="newQuery", ng-click="addQuery()") Add Query
+		tr(ng-show="newQuery")
+			td 
+				input(type='text', ng-model='newQuery.title', placeholder='Query Title')
+			td
+			td
+			td
+			td
+				button.btn.btn-success(ng-click="submitQuery()") Submit Query 
+
 		tr(ng-repeat="query in queries")
 			td
 				a(href='/queries/{{query._id}}') {{query.title}}
