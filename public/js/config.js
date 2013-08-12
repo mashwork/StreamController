@@ -1,8 +1,9 @@
 //Setting up route
-window.app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+window.app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
 		.when('/queries',		{ templateUrl: '/partials/queries/index',	controller: QueriesIndexController })
 		.when('/queries/:id',	{ templateUrl: '/partials/queries/show',	controller: QueriesShowController })
+		.when('/', { templateUrl: 'views/index.html' })
 		.otherwise({redirectTo: '/'});
 }]);
 
@@ -14,4 +15,5 @@ window.app.config(['$httpProvider', function($httpProvider, Configuration) {
 //Setting HTML5 Location Mode
 window.app.config(['$locationProvider', function($locationProvider) {
     $locationProvider.html5Mode(true);
+    //$locationProvider.hashPrefix("!");
 }]);
