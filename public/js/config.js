@@ -3,8 +3,8 @@ window.app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
 		.when('/queries',		{ templateUrl: '/partials/queries/index',	controller: QueriesIndexController })
 		.when('/queries/:id',	{ templateUrl: '/partials/queries/show',	controller: QueriesShowController })
-		.when('/', { templateUrl: 'views/index.html' })
-		.otherwise({redirectTo: '/'});
+		.when('/', 				{ templateUrl: 'views/index.html' })
+		.otherwise(				{redirectTo: '/'});
 }]);
 
 //Removing tomcat unspported headers
