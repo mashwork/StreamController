@@ -4,8 +4,6 @@
 		<li data-ng-repeat="item in menu" data-ng-show="global.user" data-ng-class="{active: isSelected(item)}"><a href="{{item.link}}">{{item.title}}</a></li>
 	</ul>
 	<ul class="nav pull-right" data-ng-hide="global.authenticated">
-		<li><a href="signup" target="_self">Signup</a></li>
-		<li class="divider-vertical"></li>
 		<li><a href="signin" target="_self">Signin</a></li>
 	</ul>
 	<ul class="nav pull-right" data-ng-show="global.authenticated">
