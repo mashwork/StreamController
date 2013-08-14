@@ -10,8 +10,8 @@ module.exports = function (app, passport, auth) {
   app.get('/signin', users.signin)
   app.get('/signout', users.signout)
   app.post('/users/session', passport.authenticate('local', {failureRedirect: '/signin', failureFlash: 'Invalid email or password.'}), users.session)
-  app.get('/users/me', users.me)
-  app.get('/users/:userId', users.show)
+  app.get('/users/me', auth.requiresLogin, users.me)
+  app.get('/users/:userId', auth.requiresLogin, users.show)
 
   app.param('userId', users.user)
 
@@ -26,8 +26,8 @@ module.exports = function (app, passport, auth) {
   app.param('queryId', query.query)
 
   var stream = require('../app/controllers/stream');
-  app.post('/api/stream', stream.restart);
-  app.get('/api/stream', stream.show);
+  app.post('/api/stream', auth.requiresLogin, stream.restart);
+  app.get('/api/stream', auth.requiresLogin, stream.show);
 
   var partials = require('../app/controllers/partials');
   app.get('/partials/:resource/:page', partials.partials);
