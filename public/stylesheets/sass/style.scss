@@ -1,0 +1,44 @@
+/*
+Mashwork - StreamController
+*/
+
+/* __________________________ IMPORTS ___________________________ */
+
+@import "bourbon";
+@import "variables";
+
+/* __________________________ STYLE ___________________________ */
+
+body {
+	background-color: $grayLight;
+}
+
+h1 {
+	margin-bottom: 20px;
+}
+
+h2, h3 {
+	font-weight: 500;
+}
+
+th {
+	text-transform: uppercase;
+}
+
+.container {
+	background-color: $white;
+	padding: 40px;
+	padding-top: 20px;
+	@include shadowed;
+}
+
+textarea, 
+#{$all-text-inputs} {
+	margin-bottom: 0;
+}
+
+.newQuery {
+	td {
+		background-color: transparentize($teal,.85);
+	}
+}

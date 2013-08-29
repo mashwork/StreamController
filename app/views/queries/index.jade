@@ -1,44 +1,45 @@
-h1 Query
+div.row-fluid
+	div.span12
+		h1 Query
 
-h2 Current Settings
-table.table
-	thead
-		tr
-			th Key
-			th Value
-	tbody
-		tr(ng-repeat="settingsDataPair in settingsDataPairs")
-			td {{settingsDataPair[0]}}
-			td {{settingsDataPair[1]}}
+		h2 Current Settings
+		table.table.table-striped
+			thead
+				tr
+					th Key
+					th Value
+			tbody
+				tr(ng-repeat="settingsDataPair in settingsDataPairs")
+					td {{settingsDataPair[0]}}
+					td {{settingsDataPair[1]}}
 
-br
-br
+div.row-fluid
+	div.span12
+		h1 Track Configurations
+		table.table
+			thead
+				tr
+					th title
+					th Last Running
+					th created at
+					th terms
+					th Set Stream Query
+			tbody
+				button.btn.btn-info(ng-hide="newQuery", ng-click="addQuery()") Add Query
+				tr.newQuery(ng-show="newQuery")
+					td 
+						input(type='text', ng-model='newQuery.title', placeholder='Query Title')
+					td
+					td
+					td
+					td
+						button.btn.btn-success.pull-right(ng-click="submitQuery()") Submit Query 
 
-h1 Track Configurations
-table.table
-	thead
-		tr
-			th title
-			th Last Running
-			th created at
-			th terms
-			th Set Stream Query
-	tbody
-		button.btn.btn-success(ng-hide="newQuery", ng-click="addQuery()") Add Query
-		tr(ng-show="newQuery")
-			td 
-				input(type='text', ng-model='newQuery.title', placeholder='Query Title')
-			td
-			td
-			td
-			td
-				button.btn.btn-success(ng-click="submitQuery()") Submit Query 
-
-		tr(ng-repeat="query in queries")
-			td
-				a(href='/queries/{{query._id}}') {{query.title}}
-			td {{query.lastRunning}}
-			td {{query.createdAt}}
-			td {{query.terms.join(",")}}
-			td 
-				button.btn.btn-success(ng-click="restartStream(query)") Restart Stream 
+				tr(ng-repeat="query in queries")
+					td
+						a(href='/queries/{{query._id}}') {{query.title}}
+					td {{query.lastRunning}}
+					td {{query.createdAt}}
+					td {{query.terms.join(",")}}
+					td 
+						button.btn.btn-small.btn-warning.pull-right(ng-click="restartStream(query)") Restart Stream 

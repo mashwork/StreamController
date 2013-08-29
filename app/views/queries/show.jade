@@ -1,18 +1,15 @@
 h1 Query
 
 
-h1(ng-hide="query.title_edit", ng-click="editTitle()") {{query.title}}
+h2(ng-hide="query.title_edit", ng-click="editTitle()") {{query.title}}
 input(ng-show="query.title_edit", type='text', ng-model='query.title', placeholder='Query Title')
 
 
-h1 Number of terms = {{numberOfTerms}} (Limit 400)
+h3 Number of terms = {{numberOfTerms}} (Limit 400)
 
-h1(ng-show="editMode") Unsaved 
+h4(ng-show="editMode") Unsaved 
 button.btn.btn-success(ng-show="editMode", ng-click="submitQuery()") Save Query
-button.btn.btn-success(ng-hide="editMode", ng-click="restartStream()") Restart Stream 
-
-br
-br
+button.btn.btn-warning.pull-right(ng-hide="editMode", ng-click="restartStream()") Restart Stream 
 
 table.table
 	thead
@@ -20,12 +17,12 @@ table.table
 			th Query Terms
 			th
 	tbody
-		button.btn.btn-success(ng-hide="addingTerm", ng-click="addTerm()") Add Term
+		button.btn.btn-info.pull-left(ng-hide="addingTerm", ng-click="addTerm()") + Add Term
 		tr(ng-repeat="term in query.terms")
 			td(ng-hide="term.string_edit", ng-click="editTerm(term)") {{term.string}}
 			td(ng-show="term.string_edit || term.string_adding")
 				input(type='text', ng-model='term.string', placeholder='term string')
 
 			td 
-				button.btn.btn-danger(ng-click="deleteTerm(term)") DELETE
+				button.btn.btn-danger.pull-right(ng-click="deleteTerm(term)") X
 
