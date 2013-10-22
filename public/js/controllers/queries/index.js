@@ -50,4 +50,11 @@ function QueriesIndexController($scope, $http, Query, Stream){
 			
 		});
 	}
+
+	$scope.deleteQuery = function(query){
+		Query.delete({id: query._id}, function(){
+			console.log("deleted")
+			refreshQueries();
+		});
+	}
 }

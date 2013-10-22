@@ -24,6 +24,7 @@ div.row-fluid
 					th created at
 					th terms
 					th Set Stream Query
+					th
 			tbody
 				button.btn.btn-info(ng-hide="newQuery", ng-click="addQuery()") Add Query
 				tr.newQuery(ng-show="newQuery")
@@ -34,6 +35,7 @@ div.row-fluid
 					td
 					td
 						button.btn.btn-success.pull-right(ng-click="submitQuery()") Submit Query 
+					td
 
 				tr(ng-repeat="query in queries")
 					td
@@ -43,3 +45,5 @@ div.row-fluid
 					td {{query.terms.join(",")}}
 					td 
 						button.btn.btn-small.btn-warning.pull-right(ng-click="restartStream(query)") Restart Stream 
+					td 
+						button.btn.btn-danger.pull-right(ng-click="deleteQuery(query)") Delete Query

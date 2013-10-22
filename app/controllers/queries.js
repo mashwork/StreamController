@@ -50,6 +50,7 @@ exports.all = function (req, res) {
 
 // Delete a 
 exports.destroy = function(req, res){
+	console.log("delete called");
 	Query.remove({ _id: req.params.queryId }, function(err){
 		sendJsonToClient(res, err, "query", true, false);
 	});
