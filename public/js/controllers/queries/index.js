@@ -1,6 +1,5 @@
-function QueriesIndexController($scope, $http, Query, Stream){
-
-
+angular.module('MEAN.articles').controller("QueriesIndexController", function QueriesIndexController($scope, $http, Query, Stream){
+	console.log("in Queries IndexController");
 	function refreshQueries(callback){
 		Query.query({}, function(twitterQueryData){
 			console.log("twitterQueryData = %j", twitterQueryData);
@@ -57,4 +56,4 @@ function QueriesIndexController($scope, $http, Query, Stream){
 			refreshQueries();
 		});
 	}
-}
+})

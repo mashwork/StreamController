@@ -8,7 +8,7 @@ module.exports = {
     root: rootPath,
     app: {
       name: 'StreamController - Development',
-      configFilePath: "/Users/mattan/Projects/CANVS/StreamController/config.config",
+      configFilePath: "/Users/GT/work/mashwork/StreamController/config.config",
       streamCommandPath: "/Users/GT/work/mashwork/receiver/target/receiver-1.0-SNAPSHOT-1375807278075/bin/twitter.d"
     }
   },

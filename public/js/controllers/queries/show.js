@@ -1,6 +1,4 @@
-
-
-function QueriesShowController($scope, $http, $routeParams, Query, Stream){
+angular.module('MEAN.articles').controller("QueriesShowController", function QueriesShowController($scope, $http, $routeParams, Query, Stream){
 
 	$scope.editMode = false;
 
@@ -75,4 +73,4 @@ function QueriesShowController($scope, $http, $routeParams, Query, Stream){
 		$scope.query.terms = _.without($scope.query.terms, term);
 		$scope.editMode = true;
 	}
-}
+})

@@ -1,4 +1,4 @@
-function HeaderController($scope, $location, Global) {
+angular.module('MEAN.articles').controller("HeaderController", function HeaderController($scope, $location, Global) {
 	$scope.global = Global;
 	$scope.menu = [
 		{
@@ -10,4 +10,4 @@ function HeaderController($scope, $location, Global) {
 	$scope.init = function() {
 
 	};
-}
+})

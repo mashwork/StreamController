@@ -3,8 +3,6 @@ var async = require('async')
 
 module.exports = function (app, passport, auth) {
 
-  
-
   // user routes
   var users = require('../app/controllers/users')
   app.get('/signin', users.signin)
@@ -17,23 +15,19 @@ module.exports = function (app, passport, auth) {
 
 
   var query = require('../app/controllers/queries');
-  app.get('/api/queries',             query.all);
-  app.post('/api/queries',            query.create);
-  app.get('/api/queries/:queryId',    query.one);
-  app.put('/api/queries/:queryId',    query.update);
-  app.del('/api/queries/:queryId',    query.destroy);
+  app.get('/api/queries',             auth.requiresLogin, query.all);
+  app.post('/api/queries',            auth.requiresLogin, query.create);
+  app.get('/api/queries/:queryId',    auth.requiresLogin, query.one);
+  app.put('/api/queries/:queryId',    auth.requiresLogin, query.update);
+  app.del('/api/queries/:queryId',    auth.requiresLogin, query.destroy);
 
   app.param('queryId', query.query)
 
   var stream = require('../app/controllers/stream');
-  app.post('/api/stream', stream.restart);
-  app.get('/api/stream', stream.show);
-
-  var partials = require('../app/controllers/partials');
-  app.get('/partials/:resource/:page', partials.partials);
+  app.post('/api/stream', auth.requiresLogin, stream.restart);
+  app.get('/api/stream',  auth.requiresLogin, stream.show);
 
   // home route
-  var index = require('../app/controllers/index')
-  app.get('*', index.render)
-
+  var index = require('../app/controllers/index');
+  app.get('/', index.render);
 }

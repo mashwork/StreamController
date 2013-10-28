@@ -1,0 +1,66 @@
+<section data-ng-controller="QueriesIndexController">
+  <div class="row-fluid">
+    <div class="span12">
+      <h1>Query</h1>
+      <h2>Current Settings</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="settingsDataPair in settingsDataPairs">
+            <td>{{settingsDataPair[0]}}</td>
+            <td>{{settingsDataPair[1]}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <h1>Track Configurations</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>title</th>
+            <th>Last Running</th>
+            <th>created at</th>
+            <th>terms</th>
+            <th>Set Stream Query</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <button ng-hide="newQuery" ng-click="addQuery()" class="btn btn-info">Add Query</button>
+          <tr ng-show="newQuery" class="newQuery">
+            <td> 
+              <input type="text" ng-model="newQuery.title" placeholder="Query Title"/>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <button ng-click="submitQuery()" class="btn btn-success pull-right">Submit Query </button>
+            </td>
+            <td></td>
+          </tr>
+          <tr ng-repeat="query in queries">
+            <td><a href="/queries/{{query._id}}">{{query.title}}</a></td>
+            <td>{{query.lastRunning}}</td>
+            <td>{{query.createdAt}}</td>
+            <td>{{query.terms.join(",")}}</td>
+            <td> 
+              <button ng-click="restartStream(query)" class="btn btn-small btn-warning pull-right">Restart Stream </button>
+            </td>
+            <td> 
+              <button ng-click="deleteQuery(query)" class="btn btn-danger pull-right">Delete Query</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
