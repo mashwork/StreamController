@@ -36,12 +36,13 @@
             <th>Last Running</th>
             <th>created at</th>
             <th>terms</th>
+            <th>Add Query</th>
             <th>Set Stream Query</th>
-            <th></th>
+            
           </tr>
         </thead>
         <tbody>
-          <button ng-hide="isNewQuery" ng-click="newQuery()" class="btn btn-info">Add Query</button>
+          <button ng-hide="isNewQuery" ng-click="newQuery()" class="btn btn-info">New Query</button>
           <tr ng-show="isNewQuery" class="isNewQuery">
             <td><input type="text" ng-model="isNewQuery.title" placeholder="Query Title"/></td>
             <td></td>
@@ -55,8 +56,8 @@
             <td>{{query.lastRunning}}</td>
             <td>{{query.createdAt}}</td>
             <td>{{query.terms.join(",")}}</td>
-            <td><button ng-click="deleteQuery(query)" class="btn btn-danger pull-right">Delete Query</button></td>
             <td><input ng-change="addQuery()" type="checkbox" name="queries[]" value="{{query.id}}" ng-checked="query.checked" ng-model="query.checked"/></td>
+            <td><button ng-click="deleteQuery(query)" class="btn btn-danger pull-right">Delete Query</button></td>
           </tr>
         </tbody>
       </table>
