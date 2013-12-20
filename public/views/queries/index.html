@@ -19,6 +19,13 @@
       </table>
     </div>
   </div>
+  <div class="row-fluid" ng-show="selectedQueryTerms">
+    <div class="span12">
+      <h3>Number of Terms = {{numTerms}}</h3>
+      {{selectedQueryTerms.join(',')}}
+      <td><button ng-show="numTerms < 400" ng-click="restartStream()" class="btn btn-success pull-right">RestartStream</button></td>
+    </div>
+  </div>
   <div class="row-fluid">
     <div class="span12">
       <h1>Track Configurations</h1>
@@ -34,17 +41,13 @@
           </tr>
         </thead>
         <tbody>
-          <button ng-hide="newQuery" ng-click="addQuery()" class="btn btn-info">Add Query</button>
-          <tr ng-show="newQuery" class="newQuery">
-            <td> 
-              <input type="text" ng-model="newQuery.title" placeholder="Query Title"/>
-            </td>
+          <button ng-hide="isNewQuery" ng-click="newQuery()" class="btn btn-info">Add Query</button>
+          <tr ng-show="isNewQuery" class="isNewQuery">
+            <td><input type="text" ng-model="isNewQuery.title" placeholder="Query Title"/></td>
             <td></td>
             <td></td>
+            <td><button ng-click="submitQuery()" class="btn btn-success pull-right">Submit Query </button></td>
             <td></td>
-            <td>
-              <button ng-click="submitQuery()" class="btn btn-success pull-right">Submit Query </button>
-            </td>
             <td></td>
           </tr>
           <tr ng-repeat="query in queries">
@@ -52,12 +55,8 @@
             <td>{{query.lastRunning}}</td>
             <td>{{query.createdAt}}</td>
             <td>{{query.terms.join(",")}}</td>
-            <td> 
-              <button ng-click="restartStream(query)" class="btn btn-small btn-warning pull-right">Restart Stream </button>
-            </td>
-            <td> 
-              <button ng-click="deleteQuery(query)" class="btn btn-danger pull-right">Delete Query</button>
-            </td>
+            <td><button ng-click="deleteQuery(query)" class="btn btn-danger pull-right">Delete Query</button></td>
+            <td><input ng-change="addQuery()" type="checkbox" name="queries[]" value="{{query.id}}" ng-checked="query.checked" ng-model="query.checked"/></td>
           </tr>
         </tbody>
       </table>

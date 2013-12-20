@@ -3,7 +3,9 @@ angular.module('MEAN.articles').controller("QueriesIndexController", function Qu
 	function refreshQueries(callback){
 		Query.query({}, function(twitterQueryData){
 			console.log("twitterQueryData = %j", twitterQueryData);
-			$scope.queries = twitterQueryData.query;
+			$scope.queries = _.sortBy(twitterQueryData.query, function (query) {return query.title.toLowerCase()});
+
+
 
 			var latestQuery = _.max($scope.queries, function(query){ return Date.parse(query.lastRun); });
 			if(latestQuery !== undefined){
@@ -27,25 +29,34 @@ angular.module('MEAN.articles').controller("QueriesIndexController", function Qu
 	getConfigSettings();
 
 	$scope.submitQuery = function(){
-		console.log("new query =  %j", $scope.newQuery);
-		Query.save($scope.newQuery, function(){
+		console.log("new query =  %j", $scope.isNewQuery);
+		Query.save($scope.isNewQuery, function(){
 			refreshQueries();
-			$scope.newQuery = undefined;
+			$scope.isNewQuery = undefined;
 		});
 	}
 
-	$scope.addQuery = function(){
-		$scope.newQuery = {title: "", terms: []};
+	$scope.newQuery = function(){
+		$scope.isNewQuery = {title: "", terms: []};
 	}
 
-	$scope.restartStream = function(query){
-		Stream.restart({terms: query.terms}, function(){
-			Query.update({id: query._id}, {lastRun: Date.now()}, function(twitterQueryData){
-				console.log("stream response received");
-				refreshQueries(function(){
-					getConfigSettings();
-				});
-			});
+	$scope.addQuery = function(){
+		$scope.selectedQueryTerms = _.chain($scope.queries)
+			.filter(function(query){return query.checked === true;})
+			.pluck("terms")
+			.flatten()
+			.uniq()
+			.value();
+
+		$scope.numTerms = _.chain($scope.selectedQueryTerms).map(function (term) {return term.split(" "); }).flatten().value().length;
+
+		console.log("$scope.selectedQueryTerms = %j", $scope.selectedQueryTerms);
+	}
+
+	$scope.restartStream = function(){
+		Stream.restart({terms: $scope.selectedQueryTerms}, function(){
+			console.log("stream response received");
+			getConfigSettings();
 			
 		});
 	}
