@@ -25,7 +25,11 @@ th {
 	text-transform: uppercase;
 }
 
-.container {
+.content {
+	margin-top: 80px;
+}
+
+.app-container {
 	background-color: $white;
 	padding: 40px;
 	padding-top: 20px;
