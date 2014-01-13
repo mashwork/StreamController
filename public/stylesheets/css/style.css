@@ -22,7 +22,8 @@ th {
   background-color: white;
   padding: 40px;
   padding-top: 20px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25); }
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+  width: 90%; }
 
 textarea,
 input[type="email"], input[type="number"], input[type="password"], input[type="search"], input[type="tel"], input[type="text"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="time"], input[type="week"] {
@@ -30,3 +31,7 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
 
 .newQuery td {
   background-color: rgba(48, 188, 174, 0.15); }
+
+.term-cell {
+  width: 40%;
+  word-break: break-all; }

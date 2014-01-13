@@ -55,7 +55,7 @@
             <td><a href="/#!/queries/{{query._id}}">{{query.title}}</a></td>
             <td>{{query.lastRunning}}</td>
             <td>{{query.createdAt}}</td>
-            <td>{{query.terms.join(",")}}</td>
+            <td class="term-cell">{{query.terms.join(",")}}</td>
             <td><input ng-change="addQuery()" type="checkbox" name="queries[]" value="{{query.id}}" ng-checked="query.checked" ng-model="query.checked"/></td>
             <td><button ng-click="deleteQuery(query)" class="btn btn-danger pull-right">Delete Query</button></td>
           </tr>

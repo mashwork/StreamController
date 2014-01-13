@@ -34,6 +34,7 @@ th {
 	padding: 40px;
 	padding-top: 20px;
 	@include shadowed;
+	width: 90%;
 }
 
 textarea, 
@@ -45,4 +46,9 @@ textarea,
 	td {
 		background-color: transparentize($teal,.85);
 	}
+}
+
+.term-cell {
+	width: 40%;
+	word-break: break-all;
 }
