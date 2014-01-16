@@ -25,11 +25,16 @@ th {
 	text-transform: uppercase;
 }
 
-.container {
+.content {
+	margin-top: 80px;
+}
+
+.app-container {
 	background-color: $white;
 	padding: 40px;
 	padding-top: 20px;
 	@include shadowed;
+	width: 90%;
 }
 
 textarea, 
@@ -41,4 +46,9 @@ textarea,
 	td {
 		background-color: transparentize($teal,.85);
 	}
+}
+
+.term-cell {
+	width: 40%;
+	word-break: break-all;
 }
