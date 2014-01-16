@@ -62,9 +62,11 @@ angular.module('MEAN.articles').controller("QueriesIndexController", function Qu
 	}
 
 	$scope.deleteQuery = function(query){
-		Query.delete({id: query._id}, function(){
-			console.log("deleted")
-			refreshQueries();
-		});
+		if(confirm("Are you sure you want to delete?")){
+			Query.delete({id: query._id}, function(){
+				console.log("deleted")
+				refreshQueries();
+			});
+		}
 	}
 })
