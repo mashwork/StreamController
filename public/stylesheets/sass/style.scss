@@ -42,6 +42,11 @@ textarea,
 	margin-bottom: 0;
 }
 
+.value-cell {
+	width: 85%;
+	word-break: break-all;
+}
+
 .newQuery {
 	td {
 		background-color: transparentize($teal,.85);
