@@ -22,8 +22,8 @@
   <div class="row-fluid" ng-show="selectedQueryTerms">
     <div class="span12">
       <h3>Number of Terms = {{numTerms}}</h3>
-      {{selectedQueryTerms.join(',')}}
-      <td><button ng-show="numTerms < 400" ng-click="restartStream()" class="btn btn-success pull-right">RestartStream</button></td>
+      <p class="selected-query-terms">{{selectedQueryTerms.join(',')}}</p>
+      <button ng-show="numTerms < 400" ng-click="restartStream()" class="btn btn-success">Restart Stream</button>
     </div>
   </div>
   <div class="row-fluid">

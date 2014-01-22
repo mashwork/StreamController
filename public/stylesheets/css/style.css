@@ -39,3 +39,6 @@ input[type="email"], input[type="number"], input[type="password"], input[type="s
 .term-cell {
   width: 40%;
   word-break: break-all; }
+
+.selected-query-terms {
+  word-break: break-all; }
